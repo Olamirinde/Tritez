@@ -1,6 +1,13 @@
+import { useState } from "react";
 import SearchIcon from "../assets/Group 2.png";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <header className="bg-[#09668A]">
       <nav className="container mx-auto flex items-center justify-between p-4">
@@ -68,7 +75,10 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
-          <button className="text-white focus:outline-none">
+          <button
+            className="text-white focus:outline-none"
+            onClick={toggleMenu}
+          >
             <svg
               className="h-6 w-6"
               fill="none"
@@ -88,36 +98,38 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Navigation */}
-      <div className="flex flex-col items-start space-y-4 p-4 md:hidden">
-        <a href="/" className="text-white hover:text-gray-300">
-          Home
-        </a>
-        <select
-          className="bg-[#09668A] text-white hover:text-gray-300 focus:outline-none"
-          name="clothes"
-          id="clothes"
-        >
-          <option value="clothes">Clothes</option>
-          <option value="clothes">T-shirts</option>
-          <option value="clothes">Jeans</option>
-          <option value="clothes">Jackets</option>
-        </select>
+      {isMenuOpen && (
+        <div className="flex flex-col items-start space-y-4 p-4 md:hidden">
+          <a href="/" className="text-white hover:text-gray-300">
+            Home
+          </a>
+          <select
+            className="bg-[#09668A] text-white hover:text-gray-300 focus:outline-none"
+            name="clothes"
+            id="clothes"
+          >
+            <option value="clothes">Clothes</option>
+            <option value="clothes">T-shirts</option>
+            <option value="clothes">Jeans</option>
+            <option value="clothes">Jackets</option>
+          </select>
 
-        <select
-          className="bg-[#09668A] text-white hover:text-gray-300 focus:outline-none"
-          name="accessories"
-          id="accessories"
-        >
-          <option value="accessories">Accessories</option>
-          <option value="accessories">Bags</option>
-          <option value="accessories">Watches</option>
-          <option value="accessories">Hats</option>
-        </select>
+          <select
+            className="bg-[#09668A] text-white hover:text-gray-300 focus:outline-none"
+            name="accessories"
+            id="accessories"
+          >
+            <option value="accessories">Accessories</option>
+            <option value="accessories">Bags</option>
+            <option value="accessories">Watches</option>
+            <option value="accessories">Hats</option>
+          </select>
 
-        <a href="/contact-us" className="text-white hover:text-gray-300">
-          Contact Us
-        </a>
-      </div>
+          <a href="/contact-us" className="text-white hover:text-gray-300">
+            Contact Us
+          </a>
+        </div>
+      )}
     </header>
   );
 };
